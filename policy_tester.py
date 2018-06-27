@@ -11,7 +11,7 @@ client = boto3.client(
 principals_to_check = ['arn:aws:iam::994667631481:user/ComputeAdmin']
 
 actions_to_check = ['iam:AddRolesToInstanceProfile',
-                    'ec2:DescribeInstances']
+                    'ec2:TerminateInstances']
 
 with open('createpol.txt') as policy_file:
     policy = policy_file.read()

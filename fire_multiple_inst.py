@@ -1,12 +1,16 @@
 import boto3
-import pprint
 import config
+import pprint
 
 ec2 = boto3.resource('ec2',
     aws_access_key_id=config.awskey,
     aws_secret_access_key=config.secret,
     region_name='eu-west-2')
 
+client = boto3.client('ec2',
+    aws_access_key_id=config.awskey,
+    aws_secret_access_key=config.secret,
+    region_name='eu-west-2')
 
 def create_instances(ami,maxcount,inst_type,sec_group,subnet,tag):
     instances = ec2.create_instances(
@@ -36,6 +40,9 @@ subnet = 'subnet-55f93e18'
 tag = {"Key": "Purpose", "Value": "Compute"}
 
 #print(create_instances(ami_id,maxcount,inst_type,sec_group,subnet,tag))
-terminate_instances(['i-03032a9ea3204368c', 'i-06b57f3f239fa4417', 'i-05afe9e70d1ab0f48', 'i-02234bddc03f147f7', 'i-0a295100d441c22a3'])
 
-#print(config.awskey)
+#response = client.describe_instances(InstanceIds=['i-0fdee982211e85a68', 'i-0c31e57ffc9f150d5', 'i-0aadc1dd5e7954a2f', 'i-08aedc0fa21119b25', 'i-0ce62344ea3e1628d'])['Reservations']
+#pprint.pprint(response)
+
+#terminate_instances(['i-0fdee982211e85a68', 'i-0c31e57ffc9f150d5', 'i-0aadc1dd5e7954a2f', 'i-08aedc0fa21119b25', 'i-0ce62344ea3e1628d'])
+
