@@ -6,15 +6,15 @@ import time
 
 client = boto3.client(
     'cloudwatch',
-    aws_access_key_id=config.awskey,
-    aws_secret_access_key=config.secret,
+    aws_access_key_id=config.aws,
+    aws_secret_access_key=config.sec,
     region_name='eu-west-2'
 )
 
 
 #print(dir(client))
 
-stats = client.get_metric_statistics(Period=300,
+stats = client.get_metric_statistics(Period=1,
     StartTime=datetime.datetime.utcnow() - datetime.timedelta(seconds=600),
     EndTime=datetime.datetime.utcnow(),
     MetricName='CPUUtilization',
