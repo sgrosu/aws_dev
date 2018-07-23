@@ -73,7 +73,7 @@ for ent in volumes.filter(Filters=[{'Name': 'volume-id', 'Values': volume_ids}])
           time.sleep(10)
           snapshot.load()
     else:
-        logger.info("snapshot {} READY".format(snapshot['Tags']))
+        logger.info("snapshot {} READY".format(snapshot.id))
 
 # adding functionality to delete snapshots older than 1 week, with tags including the word 'BU'
 
