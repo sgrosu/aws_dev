@@ -1,7 +1,7 @@
 '''
 This program creates snapshots for all tagged volumes in a aws region specified with the --region option
 
-This version is customized for loading credentials from config file
+This version is customized for loading credentials from config file - for the old Oregon account
 '''
 
 import boto3
@@ -52,8 +52,7 @@ today = datetime.datetime(now.year, now.month, now.day, tzinfo=datetime.timezone
 
 volume_ids = []
 for vol in volumes:
-    if 'OLD' in [item for elem in [list(x.values()) for x in vol.tags] for item in elem]:
-        #print(vol.tags[0]['Value'],vol.id)
+    if 'OLD' not in [item for elem in [list(x.values()) for x in vol.tags] for item in elem]:
         volume_ids.append(vol.id)
 #print(volume_ids)
 
@@ -92,7 +91,7 @@ for snap in snapshots:
         s = client.delete_snapshot(SnapshotId=snap['SnapshotId'])
         logger.info('Deleted snapshot {}'.format(snap['Tags']))
 
-    else:
-        logger.info('There are no snapshots to delete')
+    # else:
+    #     logger.info('There are no snapshots to delete')
 
 
