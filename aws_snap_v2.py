@@ -46,6 +46,19 @@ now = datetime.datetime.now(datetime.timezone.utc) # timezone-aware datetime.utc
 today = datetime.datetime(now.year, now.month, now.day, tzinfo=datetime.timezone.utc) # midnight
 
 
+volume_ids = []
+for vol in volumes:
+    if vol.tags:
+        #print(vol.tags[0]['Value'],vol.id)
+        volume_ids.append(vol.id)
+#print(volume_ids)
+
+
+
+# create specific volume snapshot
+#vol_id = ['vol-059b06737467aa987']
+
+
 for ent in volumes.filter(Filters=[{'Name': 'volume-id', 'Values': volume_ids}]).all():
     #print(ent.tags[0]['Value'])
     snapshot_name = 'BU '+str(datetime.datetime.now().day)+'/' + str(datetime.datetime.now().month)+'/'+str(datetime.datetime.now().year)+' '+ ent.tags[0]['Value']
