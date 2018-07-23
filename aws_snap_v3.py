@@ -52,7 +52,7 @@ today = datetime.datetime(now.year, now.month, now.day, tzinfo=datetime.timezone
 
 volume_ids = []
 for vol in volumes:
-    if vol.tags:
+    if 'OLD' in [item for elem in [list(x.values()) for x in vol.tags] for item in elem]:
         #print(vol.tags[0]['Value'],vol.id)
         volume_ids.append(vol.id)
 print(volume_ids)
