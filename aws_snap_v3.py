@@ -55,10 +55,10 @@ for vol in volumes:
     if 'OLD' in [item for elem in [list(x.values()) for x in vol.tags] for item in elem]:
         #print(vol.tags[0]['Value'],vol.id)
         volume_ids.append(vol.id)
-print(volume_ids)
+#print(volume_ids)
 
 
-'''
+
 for ent in volumes.filter(Filters=[{'Name': 'volume-id', 'Values': volume_ids}]).all():
     #print(ent.tags[0]['Value'])
     snapshot_name = 'BU '+str(datetime.datetime.now().day)+'/' + str(datetime.datetime.now().month)+'/'+str(datetime.datetime.now().year)+' '+ ent.tags[0]['Value']
@@ -96,4 +96,3 @@ for snap in snapshots:
         logger.info('There are no snapshots to delete')
 
 
-'''
